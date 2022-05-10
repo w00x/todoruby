@@ -8,8 +8,9 @@ module Shared
 
         def params
           request_body = {}
-          unless @sinatra.request.body.read.empty?
-            request_body = JSON.parse(@sinatra.request.body.read)
+          body = @sinatra.request.body.read
+          unless body.empty?
+            request_body = JSON.parse(body)
           end
           @params ||= @sinatra.params.merge(request_body)
         end

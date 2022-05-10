@@ -3,6 +3,8 @@ module Shared
     def rescue_from(error, type = :json)
       if error.is_a?(::Domain::Repository::Exceptions::NotFound)
         render_error(Error.not_found(error.klass, error.id), type)
+      elsif error.is_a?(::Infrastructure::Repository::SqlDb::Exceptions::ActiveRecordError)
+        render_error(Error.active_record_error(error.model), type)
       elsif error.is_a?(StandardError)
         render_error(
           Error.standar_error(

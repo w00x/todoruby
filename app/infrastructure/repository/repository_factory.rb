@@ -2,7 +2,8 @@ module Infrastructure
   module Repository
     class RepositoryFactory
       REPOSITORY_TYPES = {
-        file: FileRepository::Todo.new
+        file: FileRepository::Todo.new,
+        sql_db: SqlDb::Todo.new
       }
 
       def self.build(type)

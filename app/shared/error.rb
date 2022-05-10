@@ -53,6 +53,16 @@ module Shared
           metadata: metadata
         )
       end
+
+      def active_record_error(model)
+        new(
+          0003,
+          'ACTIVE_RECORD_ERROR',
+          422,
+          "Active Record Error #{model.class.name}",
+          metadata: model.errors
+        )
+      end
     end
   end
 end
